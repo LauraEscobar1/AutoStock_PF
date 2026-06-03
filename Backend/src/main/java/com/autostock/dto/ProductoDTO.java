@@ -1,25 +1,49 @@
 package com.autostock.dto;
 
-import com.autostock.model.EstadoProducto;
+import io.swagger.v3.oas.annotations.media.Schema;
 
+import com.autostock.model.EstadoProducto;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+
+@Schema(description = "DTO para productos")
 public class ProductoDTO {
 
+    @Schema(description = "Nombre")
+    @NotBlank(message = "El nombre del producto es obligatorio")
     private String nombre;
 
+    @Schema(description = "Codigo")
+    @NotBlank(message = "El codigo del producto es obligatorio")
     private String codigo;
 
+    @Schema(description = "Descripcion")
     private String descripcion;
 
+    @Schema(description = "Cantidad")
+    @PositiveOrZero(message = "La cantidad debe ser mayor o igual a cero")
     private Integer cantidad;
 
+    @Schema(description = "Precio unitario")
+    @Positive(message = "El precio unitario debe ser mayor que cero")
     private Double precioUnitario;
+
+    @Schema(description = "Ubicacion")
 
     private String ubicacion;
 
+    @Schema(description = "Estado")
+    @NotNull(message = "El estado del producto es obligatorio")
     private EstadoProducto estado;
 
+    @Schema(description = "Identificador de la categoria")
+    @NotNull(message = "La categoria del producto es obligatoria")
     private Long categoriaId;
 
+    @Schema(description = "Identificador del proveedor")
+    @NotNull(message = "El proveedor del producto es obligatorio")
     private Long proveedorId;
 
     public ProductoDTO() {
@@ -111,3 +135,4 @@ public class ProductoDTO {
         this.proveedorId = proveedorId;
     }
 }
+
