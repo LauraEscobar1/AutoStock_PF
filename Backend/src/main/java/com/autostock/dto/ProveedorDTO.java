@@ -1,6 +1,5 @@
 package com.autostock.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -22,12 +21,8 @@ public class ProveedorDTO {
     @Size(max = 100, message = "El nombre del proveedor no puede superar los 100 caracteres")
     private String nombre;
 
-    @NotBlank(message = "El telefono del proveedor es obligatorio")
-    @Size(max = 20, message = "El telefono del proveedor no puede superar los 20 caracteres")
-    private String telefono;
+    @Size(max = 100, message = "El contacto del proveedor no puede superar los 100 caracteres")
+    private String contacto;
 
-    @NotBlank(message = "El correo del proveedor es obligatorio")
-    @Email(message = "El correo del proveedor debe tener un formato valido")
-    @Size(max = 100, message = "El correo del proveedor no puede superar los 100 caracteres")
-    private String correo;
+    private Double descuentos;
 }

@@ -44,8 +44,8 @@ public class ProveedorServiceImpl implements ProveedorService {
     public ProveedorDTO actualizar(Long id, ProveedorDTO proveedorDTO) {
         Proveedor proveedor = buscarProveedor(id);
         proveedor.setNombre(proveedorDTO.getNombre());
-        proveedor.setTelefono(proveedorDTO.getTelefono());
-        proveedor.setCorreo(proveedorDTO.getCorreo());
+        proveedor.setContacto(proveedorDTO.getContacto());
+        proveedor.setDescuentos(proveedorDTO.getDescuentos());
 
         Proveedor proveedorActualizado = proveedorRepository.save(proveedor);
         return toDTO(proveedorActualizado);
@@ -66,8 +66,8 @@ public class ProveedorServiceImpl implements ProveedorService {
         return ProveedorDTO.builder()
                 .id(proveedor.getId())
                 .nombre(proveedor.getNombre())
-                .telefono(proveedor.getTelefono())
-                .correo(proveedor.getCorreo())
+                .contacto(proveedor.getContacto())
+                .descuentos(proveedor.getDescuentos())
                 .build();
     }
 
@@ -75,8 +75,8 @@ public class ProveedorServiceImpl implements ProveedorService {
         return Proveedor.builder()
                 .id(proveedorDTO.getId())
                 .nombre(proveedorDTO.getNombre())
-                .telefono(proveedorDTO.getTelefono())
-                .correo(proveedorDTO.getCorreo())
+                .contacto(proveedorDTO.getContacto())
+                .descuentos(proveedorDTO.getDescuentos())
                 .build();
     }
 }

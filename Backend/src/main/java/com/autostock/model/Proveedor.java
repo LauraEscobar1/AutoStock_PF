@@ -28,9 +28,9 @@ public class Proveedor {
     @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Column(nullable = false, length = 20)
-    private String telefono;
+    @Column(length = 100)
+    private String contacto;
 
-    @Column(nullable = false, unique = true, length = 100)
-    private String correo;
+    @Column
+    private Double descuentos;
 }
