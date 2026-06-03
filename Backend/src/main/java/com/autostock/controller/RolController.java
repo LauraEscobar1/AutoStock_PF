@@ -1,5 +1,9 @@
 package com.autostock.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import com.autostock.dto.RolDTO;
 import com.autostock.model.Rol;
 import com.autostock.service.RolService;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Roles", description = "Operaciones para la gestion de roles")
 @RequestMapping("/api/roles")
 public class RolController {
 
@@ -28,21 +33,53 @@ public class RolController {
         this.rolService = rolService;
     }
 
+    @Operation(summary = "Crear rol", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @PostMapping
     public ResponseEntity<Rol> crearRol(@Valid @RequestBody RolDTO rolDTO) {
         Rol rolCreado = rolService.crearRol(rolDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(rolCreado);
     }
 
+    @Operation(summary = "Listar registros", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @GetMapping
     public ResponseEntity<List<Rol>> obtenerTodos() {
         return ResponseEntity.ok(rolService.obtenerTodos());
     }
 
+    @Operation(summary = "Buscar por id", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @GetMapping("/{id}")
     public ResponseEntity<Rol> obtenerPorId(@PathVariable Long id) {
         return ResponseEntity.ok(rolService.obtenerPorId(id));
     }
+
+    @Operation(summary = "Actualizar rol", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @PutMapping("/{id}")
     public ResponseEntity<Rol> actualizarRol(
@@ -50,6 +87,14 @@ public class RolController {
             @Valid @RequestBody RolDTO rolDTO) {
         return ResponseEntity.ok(rolService.actualizarRol(id, rolDTO));
     }
+
+    @Operation(summary = "Eliminar rol", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarRol(@PathVariable Long id) {
@@ -62,3 +107,4 @@ public class RolController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }
+
