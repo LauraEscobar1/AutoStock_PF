@@ -1,5 +1,11 @@
 package com.autostock.controller;
 
+import jakarta.validation.Valid;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import com.autostock.dto.PedidoAutomaticoDTO;
 import com.autostock.service.PedidoAutomaticoService;
 import java.util.List;
@@ -17,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Pedidos Automaticos", description = "Operaciones para la gestion de pedidos automaticos")
 @RequestMapping("/api/pedidos-automaticos")
 public class PedidoAutomaticoController {
 
@@ -26,27 +33,67 @@ public class PedidoAutomaticoController {
         this.pedidoAutomaticoService = pedidoAutomaticoService;
     }
 
+    @Operation(summary = "Listar registros", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @GetMapping
     public ResponseEntity<List<PedidoAutomaticoDTO>> listarTodos() {
         return ResponseEntity.ok(pedidoAutomaticoService.listarTodos());
     }
+
+    @Operation(summary = "Buscar por id", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @GetMapping("/{id}")
     public ResponseEntity<PedidoAutomaticoDTO> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(pedidoAutomaticoService.buscarPorId(id));
     }
 
+    @Operation(summary = "Crear registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @PostMapping
-    public ResponseEntity<PedidoAutomaticoDTO> guardar(@RequestBody PedidoAutomaticoDTO dto) {
+    public ResponseEntity<PedidoAutomaticoDTO> guardar(@Valid @RequestBody PedidoAutomaticoDTO dto) {
         PedidoAutomaticoDTO pedidoAutomaticoGuardado = pedidoAutomaticoService.guardar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoAutomaticoGuardado);
     }
 
+    @Operation(summary = "Actualizar registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @PutMapping("/{id}")
     public ResponseEntity<PedidoAutomaticoDTO> actualizar(@PathVariable Long id,
-            @RequestBody PedidoAutomaticoDTO dto) {
+            @Valid @RequestBody PedidoAutomaticoDTO dto) {
         return ResponseEntity.ok(pedidoAutomaticoService.actualizar(id, dto));
     }
+
+    @Operation(summary = "Eliminar registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
@@ -59,3 +106,4 @@ public class PedidoAutomaticoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }
+

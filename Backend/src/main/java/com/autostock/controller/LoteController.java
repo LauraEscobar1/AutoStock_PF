@@ -1,5 +1,11 @@
 package com.autostock.controller;
 
+import jakarta.validation.Valid;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import com.autostock.dto.LoteDTO;
 import com.autostock.service.LoteService;
 import java.util.List;
@@ -17,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Lotes", description = "Operaciones para la gestion de lotes")
 @RequestMapping("/api/lotes")
 public class LoteController {
 
@@ -26,26 +33,66 @@ public class LoteController {
         this.loteService = loteService;
     }
 
+    @Operation(summary = "Listar registros", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @GetMapping
     public ResponseEntity<List<LoteDTO>> listarTodos() {
         return ResponseEntity.ok(loteService.listarTodos());
     }
+
+    @Operation(summary = "Buscar por id", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @GetMapping("/{id}")
     public ResponseEntity<LoteDTO> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(loteService.buscarPorId(id));
     }
 
+    @Operation(summary = "Crear registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @PostMapping
-    public ResponseEntity<LoteDTO> guardar(@RequestBody LoteDTO dto) {
+    public ResponseEntity<LoteDTO> guardar(@Valid @RequestBody LoteDTO dto) {
         LoteDTO loteGuardado = loteService.guardar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(loteGuardado);
     }
 
+    @Operation(summary = "Actualizar registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @PutMapping("/{id}")
-    public ResponseEntity<LoteDTO> actualizar(@PathVariable Long id, @RequestBody LoteDTO dto) {
+    public ResponseEntity<LoteDTO> actualizar(@PathVariable Long id, @Valid @RequestBody LoteDTO dto) {
         return ResponseEntity.ok(loteService.actualizar(id, dto));
     }
+
+    @Operation(summary = "Eliminar registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
@@ -58,3 +105,4 @@ public class LoteController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }
+

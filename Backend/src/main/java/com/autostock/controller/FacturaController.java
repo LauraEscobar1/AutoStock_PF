@@ -1,8 +1,13 @@
 package com.autostock.controller;
 
+import jakarta.validation.Valid;
+
 import com.autostock.dto.FacturaDTO;
 import com.autostock.model.Factura;
 import com.autostock.service.FacturaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
@@ -20,19 +25,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/facturas")
+@Tag(name = "Facturas", description = "Operaciones para la gestion de facturas")
 @RequiredArgsConstructor
 public class FacturaController {
 
     private final FacturaService facturaService;
 
     @PostMapping
-    public ResponseEntity<FacturaDTO> crearFactura(@RequestBody FacturaDTO facturaDTO) {
+    @Operation(summary = "Crear factura", responses = {
+            @ApiResponse(responseCode = "201", description = "Factura creada correctamente")
+    })
+    public ResponseEntity<FacturaDTO> crearFactura(@Valid @RequestBody FacturaDTO facturaDTO) {
         Factura factura = toEntity(facturaDTO);
         Factura facturaCreada = facturaService.crearFactura(factura);
         return ResponseEntity.status(HttpStatus.CREATED).body(toDTO(facturaCreada));
     }
 
+    @PostMapping("/compra")
+    @Operation(summary = "Generar factura de compra", responses = {
+            @ApiResponse(responseCode = "201", description = "Factura de compra generada correctamente")
+    })
+    public ResponseEntity<FacturaDTO> generarFacturaCompra(@Valid @RequestBody FacturaDTO facturaDTO) {
+        Factura factura = toEntity(facturaDTO);
+        Factura facturaCreada = facturaService.generarFacturaCompra(factura);
+        return ResponseEntity.status(HttpStatus.CREATED).body(toDTO(facturaCreada));
+    }
+
+    @PostMapping("/venta")
+    @Operation(summary = "Generar factura de venta", responses = {
+            @ApiResponse(responseCode = "201", description = "Factura de venta generada correctamente")
+    })
+    public ResponseEntity<FacturaDTO> generarFacturaVenta(@Valid @RequestBody FacturaDTO facturaDTO) {
+        Factura factura = toEntity(facturaDTO);
+        Factura facturaCreada = facturaService.generarFacturaVenta(factura);
+        return ResponseEntity.status(HttpStatus.CREATED).body(toDTO(facturaCreada));
+    }
+
     @GetMapping
+    @Operation(summary = "Listar facturas", responses = {
+            @ApiResponse(responseCode = "200", description = "Facturas listadas correctamente")
+    })
     public ResponseEntity<List<FacturaDTO>> listarFacturas() {
         List<FacturaDTO> facturas = facturaService.listarFacturas()
                 .stream()
@@ -42,20 +74,32 @@ public class FacturaController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Buscar factura por id", responses = {
+            @ApiResponse(responseCode = "200", description = "Factura encontrada"),
+            @ApiResponse(responseCode = "404", description = "Factura no encontrada")
+    })
     public ResponseEntity<FacturaDTO> obtenerFactura(@PathVariable Long id) {
         return ResponseEntity.ok(toDTO(facturaService.obtenerFactura(id)));
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar factura", responses = {
+            @ApiResponse(responseCode = "200", description = "Factura actualizada correctamente"),
+            @ApiResponse(responseCode = "404", description = "Factura no encontrada")
+    })
     public ResponseEntity<FacturaDTO> actualizarFactura(
             @PathVariable Long id,
-            @RequestBody FacturaDTO facturaDTO) {
+            @Valid @RequestBody FacturaDTO facturaDTO) {
         Factura factura = toEntity(facturaDTO);
         Factura facturaActualizada = facturaService.actualizarFactura(id, factura);
         return ResponseEntity.ok(toDTO(facturaActualizada));
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar factura", responses = {
+            @ApiResponse(responseCode = "204", description = "Factura eliminada correctamente"),
+            @ApiResponse(responseCode = "404", description = "Factura no encontrada")
+    })
     public ResponseEntity<Void> eliminarFactura(@PathVariable Long id) {
         facturaService.eliminarFactura(id);
         return ResponseEntity.noContent().build();
@@ -84,3 +128,4 @@ public class FacturaController {
         return dto;
     }
 }
+
