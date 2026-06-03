@@ -1,11 +1,20 @@
 package com.autostock.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+import jakarta.validation.constraints.NotBlank;
+
+@Schema(description = "DTO para usuarios")
 public class UsuarioDTO {
 
+    @Schema(description = "Identificador unico")
     private Long id;
 
+    @Schema(description = "Nombre de usuario")
+    @NotBlank(message = "El nombre de usuario es obligatorio")
     private String nombreUsuario;
 
+    @Schema(description = "Contrasena")
     private String contrasena;
 
     public UsuarioDTO() {
@@ -41,3 +50,4 @@ public class UsuarioDTO {
         this.contrasena = contrasena;
     }
 }
+
