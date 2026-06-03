@@ -11,6 +11,12 @@ public interface MovimientoService {
 
     MovimientoDTO guardar(MovimientoDTO dto);
 
+    MovimientoDTO registrarEntrada(MovimientoDTO dto);
+
+    MovimientoDTO registrarSalida(MovimientoDTO dto);
+
+    MovimientoDTO registrarDevolucion(MovimientoDTO dto);
+
     MovimientoDTO actualizar(Long id, MovimientoDTO dto);
 
     void eliminar(Long id);

@@ -1,6 +1,7 @@
 package com.autostock.service.impl;
 
 import com.autostock.model.Factura;
+import com.autostock.model.TipoFactura;
 import com.autostock.repository.FacturaRepository;
 import com.autostock.service.FacturaService;
 import java.util.List;
@@ -18,6 +19,20 @@ public class FacturaServiceImpl implements FacturaService {
 
     @Override
     public Factura crearFactura(Factura factura) {
+        return facturaRepository.save(factura);
+    }
+
+    @Override
+    public Factura generarFacturaCompra(Factura factura) {
+        factura.setTipo(TipoFactura.COMPRA);
+        factura.generarFactura();
+        return facturaRepository.save(factura);
+    }
+
+    @Override
+    public Factura generarFacturaVenta(Factura factura) {
+        factura.setTipo(TipoFactura.VENTA);
+        factura.generarFactura();
         return facturaRepository.save(factura);
     }
 

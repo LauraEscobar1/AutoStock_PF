@@ -12,6 +12,10 @@ public interface ProductoService {
 
     Producto obtenerPorId(Long id);
 
+    Producto obtenerPorCodigo(String codigo);
+
+    Integer consultarStock(Long id);
+
     Producto actualizarProducto(Long id, ProductoDTO dto);
 
     void eliminarProducto(Long id);

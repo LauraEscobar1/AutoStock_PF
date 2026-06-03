@@ -52,6 +52,19 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Producto obtenerPorCodigo(String codigo) {
+        return productoRepository.findByCodigo(codigo)
+                .orElseThrow(() -> new NoSuchElementException("Producto no encontrado con codigo: " + codigo));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Integer consultarStock(Long id) {
+        return buscarProducto(id).getCantidad();
+    }
+
+    @Override
     public Producto actualizarProducto(Long id, ProductoDTO dto) {
         Producto producto = buscarProducto(id);
         Categoria categoria = buscarCategoria(dto.getCategoriaId());

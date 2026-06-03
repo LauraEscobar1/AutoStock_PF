@@ -7,6 +7,10 @@ public interface FacturaService {
 
     Factura crearFactura(Factura factura);
 
+    Factura generarFacturaCompra(Factura factura);
+
+    Factura generarFacturaVenta(Factura factura);
+
     Factura obtenerFactura(Long id);
 
     List<Factura> listarFacturas();
