@@ -1,5 +1,11 @@
 package com.autostock.controller;
 
+import jakarta.validation.Valid;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import com.autostock.dto.AlertaStockDTO;
 import com.autostock.service.AlertaStockService;
 import java.util.List;
@@ -17,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Alertas de Stock", description = "Operaciones para la gestion de alertas de stock")
 @RequestMapping("/api/alertas-stock")
 public class AlertaStockController {
 
@@ -26,27 +33,67 @@ public class AlertaStockController {
         this.alertaStockService = alertaStockService;
     }
 
+    @Operation(summary = "Listar registros", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @GetMapping
     public ResponseEntity<List<AlertaStockDTO>> listarTodos() {
         return ResponseEntity.ok(alertaStockService.listarTodos());
     }
+
+    @Operation(summary = "Buscar por id", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @GetMapping("/{id}")
     public ResponseEntity<AlertaStockDTO> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(alertaStockService.buscarPorId(id));
     }
 
+    @Operation(summary = "Crear registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @PostMapping
-    public ResponseEntity<AlertaStockDTO> guardar(@RequestBody AlertaStockDTO dto) {
+    public ResponseEntity<AlertaStockDTO> guardar(@Valid @RequestBody AlertaStockDTO dto) {
         AlertaStockDTO alertaStockGuardada = alertaStockService.guardar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(alertaStockGuardada);
     }
 
+    @Operation(summary = "Actualizar registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @PutMapping("/{id}")
     public ResponseEntity<AlertaStockDTO> actualizar(@PathVariable Long id,
-            @RequestBody AlertaStockDTO dto) {
+            @Valid @RequestBody AlertaStockDTO dto) {
         return ResponseEntity.ok(alertaStockService.actualizar(id, dto));
     }
+
+    @Operation(summary = "Eliminar registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
@@ -59,3 +106,4 @@ public class AlertaStockController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }
+

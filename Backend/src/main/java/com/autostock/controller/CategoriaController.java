@@ -1,5 +1,9 @@
 package com.autostock.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import com.autostock.dto.CategoriaDTO;
 import com.autostock.service.CategoriaService;
 import jakarta.validation.Valid;
@@ -19,11 +23,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Categorias", description = "Operaciones para la gestion de categorias")
 @RequestMapping("/api/categorias")
 @RequiredArgsConstructor
 public class CategoriaController {
 
     private final CategoriaService categoriaService;
+
+    @Operation(summary = "Crear registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @PostMapping
     public ResponseEntity<CategoriaDTO> crear(@Valid @RequestBody CategoriaDTO categoriaDTO) {
@@ -31,15 +44,39 @@ public class CategoriaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaCreada);
     }
 
+    @Operation(summary = "Listar registros", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @GetMapping
     public ResponseEntity<List<CategoriaDTO>> listar() {
         return ResponseEntity.ok(categoriaService.listar());
     }
 
+    @Operation(summary = "Buscar por id", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
+
     @GetMapping("/{id}")
     public ResponseEntity<CategoriaDTO> obtenerPorId(@PathVariable Long id) {
         return ResponseEntity.ok(categoriaService.obtenerPorId(id));
     }
+
+    @Operation(summary = "Actualizar registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoriaDTO> actualizar(
@@ -47,6 +84,14 @@ public class CategoriaController {
             @Valid @RequestBody CategoriaDTO categoriaDTO) {
         return ResponseEntity.ok(categoriaService.actualizar(id, categoriaDTO));
     }
+
+    @Operation(summary = "Eliminar registro", responses = {
+
+            @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente"),
+
+            @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+
+    })
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
@@ -59,3 +104,4 @@ public class CategoriaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 }
+
