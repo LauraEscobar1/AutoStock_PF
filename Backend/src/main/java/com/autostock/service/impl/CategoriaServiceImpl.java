@@ -44,6 +44,8 @@ public class CategoriaServiceImpl implements CategoriaService {
     public CategoriaDTO actualizar(Long id, CategoriaDTO categoriaDTO) {
         Categoria categoria = buscarCategoria(id);
         categoria.setNombre(categoriaDTO.getNombre());
+        categoria.setTipo(categoriaDTO.getTipo());
+        categoria.setTamano(categoriaDTO.getTamano());
 
         Categoria categoriaActualizada = categoriaRepository.save(categoria);
         return toDTO(categoriaActualizada);
@@ -64,6 +66,8 @@ public class CategoriaServiceImpl implements CategoriaService {
         return CategoriaDTO.builder()
                 .id(categoria.getId())
                 .nombre(categoria.getNombre())
+                .tipo(categoria.getTipo())
+                .tamano(categoria.getTamano())
                 .build();
     }
 
@@ -71,6 +75,8 @@ public class CategoriaServiceImpl implements CategoriaService {
         return Categoria.builder()
                 .id(categoriaDTO.getId())
                 .nombre(categoriaDTO.getNombre())
+                .tipo(categoriaDTO.getTipo())
+                .tamano(categoriaDTO.getTamano())
                 .build();
     }
 }

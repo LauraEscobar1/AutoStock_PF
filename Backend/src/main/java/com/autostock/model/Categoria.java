@@ -27,4 +27,10 @@ public class Categoria {
 
     @Column(nullable = false, unique = true, length = 100)
     private String nombre;
+
+    @Column(length = 100)
+    private String tipo;
+
+    @Column(length = 100)
+    private String tamano;
 }

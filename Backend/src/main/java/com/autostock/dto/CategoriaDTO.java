@@ -20,4 +20,10 @@ public class CategoriaDTO {
     @NotBlank(message = "El nombre de la categoria es obligatorio")
     @Size(max = 100, message = "El nombre de la categoria no puede superar los 100 caracteres")
     private String nombre;
+
+    @Size(max = 100, message = "El tipo de la categoria no puede superar los 100 caracteres")
+    private String tipo;
+
+    @Size(max = 100, message = "El tamano de la categoria no puede superar los 100 caracteres")
+    private String tamano;
 }
