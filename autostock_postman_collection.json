@@ -1,0 +1,1017 @@
+{
+  "info": {
+    "name": "AutoStock API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Colección Postman para la API Backend de AutoStock",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Categorias",
+      "item": [
+        {
+          "name": "Listar categorias",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categorias"]
+            }
+          }
+        },
+        {
+          "name": "Crear categoria",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Bebidas\",\n  \"tipo\": \"Alimentos\",\n  \"tamano\": \"Mediano\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categorias"]
+            }
+          }
+        },
+        {
+          "name": "Obtener categoria por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categorias", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar categoria",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Bebidas Actualizado\",\n  \"tipo\": \"Alimentos\",\n  \"tamano\": \"Grande\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categorias", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar categoria",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categorias", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Productos",
+      "item": [
+        {
+          "name": "Listar productos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/productos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "productos"]
+            }
+          }
+        },
+        {
+          "name": "Crear producto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Coca-Cola\",\n  \"codigo\": \"COKE123\",\n  \"descripcion\": \"Botella de 500ml\",\n  \"cantidad\": 50,\n  \"precioUnitario\": 1.75,\n  \"ubicacion\": \"Estanteria A3\",\n  \"estado\": \"DISPONIBLE\",\n  \"categoriaId\": 1,\n  \"proveedorId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/productos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "productos"]
+            }
+          }
+        },
+        {
+          "name": "Obtener producto por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/productos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "productos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Buscar producto por codigo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/productos/codigo/COKE123",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "productos", "codigo", "COKE123"]
+            }
+          }
+        },
+        {
+          "name": "Consultar stock de producto",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/productos/1/stock",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "productos", "1", "stock"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar producto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Coca-Cola Zero\",\n  \"codigo\": \"COKE123\",\n  \"descripcion\": \"Botella de 500ml sin azucar\",\n  \"cantidad\": 60,\n  \"precioUnitario\": 1.85,\n  \"ubicacion\": \"Estanteria A3\",\n  \"estado\": \"DISPONIBLE\",\n  \"categoriaId\": 1,\n  \"proveedorId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/productos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "productos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/productos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "productos", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Proveedores",
+      "item": [
+        {
+          "name": "Listar proveedores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/proveedores",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "proveedores"]
+            }
+          }
+        },
+        {
+          "name": "Crear proveedor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Proveedor Central\",\n  \"contacto\": \"contacto@proveedor.com\",\n  \"descuentos\": 5.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/proveedores",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "proveedores"]
+            }
+          }
+        },
+        {
+          "name": "Obtener proveedor por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/proveedores/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "proveedores", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar proveedor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Proveedor Central Actualizado\",\n  \"contacto\": \"ventas@proveedor.com\",\n  \"descuentos\": 4.5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/proveedores/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "proveedores", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar proveedor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/proveedores/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "proveedores", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Listar usuarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Crear usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombreUsuario\": \"admin\",\n  \"contrasena\": \"P@ssword123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Obtener usuario por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombreUsuario\": \"admin2\",\n  \"contrasena\": \"NuevaP@ssword123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "usuarios", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sucursales",
+      "item": [
+        {
+          "name": "Listar sucursales",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/sucursales",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sucursales"]
+            }
+          }
+        },
+        {
+          "name": "Crear sucursal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Sucursal Centro\",\n  \"ubicacion\": \"Av. Principal 123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/sucursales",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sucursales"]
+            }
+          }
+        },
+        {
+          "name": "Obtener sucursal por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/sucursales/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sucursales", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar sucursal",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Sucursal Norte\",\n  \"ubicacion\": \"Calle Secundaria 456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/sucursales/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sucursales", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar sucursal",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/sucursales/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sucursales", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Listar roles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/roles",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "roles"]
+            }
+          }
+        },
+        {
+          "name": "Crear rol",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"ADMIN\",\n  \"permisos\": [\"LECTURA\", \"ESCRITURA\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/roles",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "roles"]
+            }
+          }
+        },
+        {
+          "name": "Obtener rol por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/roles/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "roles", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar rol",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"OPERADOR\",\n  \"permisos\": [\"LECTURA\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/roles/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "roles", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar rol",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/roles/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "roles", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedidos Automaticos",
+      "item": [
+        {
+          "name": "Listar pedidos automaticos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pedidos-automaticos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pedidos-automaticos"]
+            }
+          }
+        },
+        {
+          "name": "Crear pedido automatico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cantidad\": 20,\n  \"fechaGenerado\": \"2026-06-03\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pedidos-automaticos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pedidos-automaticos"]
+            }
+          }
+        },
+        {
+          "name": "Obtener pedido automatico por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pedidos-automaticos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pedidos-automaticos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar pedido automatico",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cantidad\": 25,\n  \"fechaGenerado\": \"2026-06-04\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pedidos-automaticos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pedidos-automaticos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar pedido automatico",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pedidos-automaticos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pedidos-automaticos", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Alertas de Stock",
+      "item": [
+        {
+          "name": "Listar alertas de stock",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/alertas-stock",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "alertas-stock"]
+            }
+          }
+        },
+        {
+          "name": "Crear alerta de stock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nivelActual\": 5,\n  \"nivelMinimo\": 10,\n  \"fecha\": \"2026-06-03\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/alertas-stock",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "alertas-stock"]
+            }
+          }
+        },
+        {
+          "name": "Obtener alerta por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/alertas-stock/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "alertas-stock", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar alerta de stock",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nivelActual\": 8,\n  \"nivelMinimo\": 10,\n  \"fecha\": \"2026-06-04\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/alertas-stock/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "alertas-stock", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar alerta de stock",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/alertas-stock/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "alertas-stock", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Movimientos",
+      "item": [
+        {
+          "name": "Listar movimientos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/movimientos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movimientos"]
+            }
+          }
+        },
+        {
+          "name": "Crear movimiento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"ENTRADA\",\n  \"fechaHora\": \"2026-06-03T12:00:00\",\n  \"cantidad\": 10,\n  \"productoId\": 1,\n  \"usuarioId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/movimientos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movimientos"]
+            }
+          }
+        },
+        {
+          "name": "Registrar entrada",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"ENTRADA\",\n  \"fechaHora\": \"2026-06-03T12:00:00\",\n  \"cantidad\": 10,\n  \"productoId\": 1,\n  \"usuarioId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/movimientos/entrada",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movimientos", "entrada"]
+            }
+          }
+        },
+        {
+          "name": "Registrar salida",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"SALIDA\",\n  \"fechaHora\": \"2026-06-03T13:00:00\",\n  \"cantidad\": 5,\n  \"productoId\": 1,\n  \"usuarioId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/movimientos/salida",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movimientos", "salida"]
+            }
+          }
+        },
+        {
+          "name": "Registrar devolucion",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"DEVOLUCION_CLIENTE\",\n  \"fechaHora\": \"2026-06-03T14:00:00\",\n  \"cantidad\": 2,\n  \"productoId\": 1,\n  \"usuarioId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/movimientos/devolucion",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movimientos", "devolucion"]
+            }
+          }
+        },
+        {
+          "name": "Obtener movimiento por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/movimientos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movimientos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar movimiento",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"ENTRADA\",\n  \"fechaHora\": \"2026-06-03T15:00:00\",\n  \"cantidad\": 12,\n  \"productoId\": 1,\n  \"usuarioId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/movimientos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movimientos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar movimiento",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/movimientos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "movimientos", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Facturas",
+      "item": [
+        {
+          "name": "Listar facturas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/facturas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "facturas"]
+            }
+          }
+        },
+        {
+          "name": "Crear factura",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"COMPRA\",\n  \"fecha\": \"2026-06-03\",\n  \"total\": 250.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/facturas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "facturas"]
+            }
+          }
+        },
+        {
+          "name": "Crear factura de compra",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"COMPRA\",\n  \"fecha\": \"2026-06-03\",\n  \"total\": 250.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/facturas/compra",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "facturas", "compra"]
+            }
+          }
+        },
+        {
+          "name": "Crear factura de venta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"VENTA\",\n  \"fecha\": \"2026-06-03\",\n  \"total\": 300.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/facturas/venta",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "facturas", "venta"]
+            }
+          }
+        },
+        {
+          "name": "Obtener factura por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/facturas/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "facturas", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar factura",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"COMPRA\",\n  \"fecha\": \"2026-06-04\",\n  \"total\": 275.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/facturas/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "facturas", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar factura",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/facturas/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "facturas", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ERP",
+      "item": [
+        {
+          "name": "Sincronizar compras",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/erp/compras/sincronizar",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "erp", "compras", "sincronizar"]
+            }
+          }
+        },
+        {
+          "name": "Sincronizar ventas",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/erp/ventas/sincronizar",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "erp", "ventas", "sincronizar"]
+            }
+          }
+        },
+        {
+          "name": "Sincronizar facturas",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/erp/facturas/sincronizar",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "erp", "facturas", "sincronizar"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
