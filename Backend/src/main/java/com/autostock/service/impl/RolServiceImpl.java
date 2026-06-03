@@ -23,7 +23,7 @@ public class RolServiceImpl implements RolService {
     public Rol crearRol(RolDTO rolDTO) {
         Rol rol = new Rol();
         rol.setNombre(rolDTO.getNombre());
-        rol.setDescripcion(rolDTO.getDescripcion());
+        rol.setPermisos(rolDTO.getPermisos());
         return rolRepository.save(rol);
     }
 
@@ -43,7 +43,7 @@ public class RolServiceImpl implements RolService {
     public Rol actualizarRol(Long id, RolDTO rolDTO) {
         Rol rol = buscarRol(id);
         rol.setNombre(rolDTO.getNombre());
-        rol.setDescripcion(rolDTO.getDescripcion());
+        rol.setPermisos(rolDTO.getPermisos());
         return rolRepository.save(rol);
     }
 

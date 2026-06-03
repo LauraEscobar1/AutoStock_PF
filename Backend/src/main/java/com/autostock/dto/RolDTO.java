@@ -2,6 +2,7 @@ package com.autostock.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 public class RolDTO {
 
@@ -9,15 +10,14 @@ public class RolDTO {
     @Size(max = 100, message = "El nombre del rol no puede superar los 100 caracteres")
     private String nombre;
 
-    @Size(max = 255, message = "La descripcion del rol no puede superar los 255 caracteres")
-    private String descripcion;
+    private List<String> permisos;
 
     public RolDTO() {
     }
 
-    public RolDTO(String nombre, String descripcion) {
+    public RolDTO(String nombre, List<String> permisos) {
         this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.permisos = permisos;
     }
 
     public String getNombre() {
@@ -28,11 +28,11 @@ public class RolDTO {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public List<String> getPermisos() {
+        return permisos;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setPermisos(List<String> permisos) {
+        this.permisos = permisos;
     }
 }
